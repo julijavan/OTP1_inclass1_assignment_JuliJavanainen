@@ -28,23 +28,18 @@ class TemperatureConverterTest {
         assertFalse(TemperatureConverter.isExtremeTemperature(20.0));
     }
 
-    // New tests for kelvinToCelsius
-
     @Test
     void testKelvinToCelsius() {
-        // 300 K -> 26.85 C
         assertEquals(26.85, TemperatureConverter.kelvinToCelsius(300.0), DELTA);
     }
 
     @Test
     void testKelvinToCelsiusAbsoluteZero() {
-        // 0 K -> -273.15 C
         assertEquals(-273.15, TemperatureConverter.kelvinToCelsius(0.0), DELTA);
     }
 
     @Test
     void testKelvinToCelsiusWaterFreezing() {
-        // 273.15 K -> 0 C
         assertEquals(0.0, TemperatureConverter.kelvinToCelsius(273.15), DELTA);
     }
 

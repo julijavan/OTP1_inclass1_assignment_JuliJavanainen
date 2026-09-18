@@ -12,13 +12,10 @@ public class TemperatureConverter {
         return celsius < -40 || celsius > 50;
     }
 
-    // Converts Kelvin to Celsius using C = K - 273.15
     public static double kelvinToCelsius(double kelvin) {
         return kelvin - 273.15;
     }
 
-    // Prints whether a given Celsius temperature is extreme or normal.
-    // Pulled out of main() so both branches can be unit tested directly.
     public static void printTemperatureStatus(double celsius) {
         if (isExtremeTemperature(celsius)) {
             System.out.println(celsius + "°C is an extreme temperature.");
