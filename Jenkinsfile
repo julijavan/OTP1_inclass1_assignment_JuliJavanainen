@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/julijavan/OTP1_inclass1_assignment_JuliJavanainen'
+                git branch: 'main', url: 'https://github.com/julijavan/OTP1_inclass1_assignment_JuliJavanainen'
             }
         }
         stage('Build') {
