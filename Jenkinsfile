@@ -35,7 +35,7 @@ pipeline {
             }
             stage('Docker Build') {
                 steps {
-                    bat 'docker build -t julijavan/temperature-converter:latest .'
+                    bat 'docker build -t julijav/temperature-converter:latest .'
                 }
             }
             stage('Docker Push') {
@@ -46,4 +46,6 @@ pipeline {
                     }
                 }
             }
+        }
+    }
 }
