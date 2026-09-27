@@ -33,6 +33,7 @@ pipeline {
             steps {
                 jacoco()
             }
+        }
             stage('Docker Build') {
                 steps {
                     bat 'docker build -t julijav/temperature-converter:latest .'
@@ -59,4 +60,3 @@ pipeline {
             }
         }
     }
-}
