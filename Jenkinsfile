@@ -39,11 +39,17 @@ pipeline {
                 bat '"C:\\Users\\julij\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" build -t julijav/temperature-converter:latest .'
             }
         }
+        stage('Build Docker Image') {
+            steps {
+                bat "\"C:\\Users\\julij\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe\" tag julijav/temperature-converter:latest julijav/temperature-converter:${BUILD_NUMBER}"
+            }
+        }
         stage('Docker Push') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     bat '"C:\\Users\\julij\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" login -u %DOCKER_USER% -p %DOCKER_PASS%'
                     bat '"C:\\Users\\julij\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" push julijav/temperature-converter:latest'
+                    bat "\"C:\\Users\\julij\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe\" push julijav/temperature-converter:${BUILD_NUMBER}"
                 }
             }
         }
