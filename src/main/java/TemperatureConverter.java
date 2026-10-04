@@ -18,7 +18,6 @@ public class TemperatureConverter {
         return kelvin - 273.15;
     }
 
-    // Converts between C, F and K
     public double convert(double value, String from, String to) {
 
         if (from.equalsIgnoreCase("K") && value < 0) {
@@ -33,12 +32,10 @@ public class TemperatureConverter {
             throw new IllegalArgumentException("Temperature cannot be below absolute zero");
         }
 
-        // If the units are the same, no conversion is needed
         if (from.equalsIgnoreCase(to)) {
             return value;
         }
 
-        // First convert the input to Celsius
         double celsius;
 
         switch (from.toUpperCase()) {
@@ -58,7 +55,6 @@ public class TemperatureConverter {
                 throw new IllegalArgumentException("Unknown temperature unit: " + from);
         }
 
-        // Then convert Celsius to the target unit
         switch (to.toUpperCase()) {
             case "C":
                 return celsius;
@@ -74,7 +70,6 @@ public class TemperatureConverter {
         }
     }
 
-    // Calculates speed in km/h
     public double speed(double distanceKm, double timeHours) {
         if (timeHours == 0) {
             throw new IllegalArgumentException("Time cannot be zero");
