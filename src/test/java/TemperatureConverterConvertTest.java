@@ -24,7 +24,6 @@ public class TemperatureConverterConvertTest {
 
     public static double convert(double value, String from, String to) {
 
-        // Check that the input temperature is physically possible
         if (from.equalsIgnoreCase("K") && value < 0) {
             throw new IllegalArgumentException(
                     "Temperature cannot be below absolute zero"
@@ -43,12 +42,10 @@ public class TemperatureConverterConvertTest {
             );
         }
 
-        // Same unit
         if (from.equalsIgnoreCase(to)) {
             return value;
         }
 
-        // Convert input to Celsius first
         double celsius;
 
         switch (from.toUpperCase()) {
@@ -70,7 +67,6 @@ public class TemperatureConverterConvertTest {
                 );
         }
 
-        // Convert Celsius to target unit
         switch (to.toUpperCase()) {
             case "C":
                 return celsius;
