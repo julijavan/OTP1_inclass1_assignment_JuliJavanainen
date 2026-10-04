@@ -1,6 +1,6 @@
 package org.example;
 
-public class TemperatureConverter {
+public class TemperatureConverterConvertTest {
 
     public static double fahrenheitToCelsius(double fahrenheit) {
         return (fahrenheit - 32) * 5 / 9;
@@ -10,35 +10,45 @@ public class TemperatureConverter {
         return (celsius * 9 / 5) + 32;
     }
 
-    public static boolean isExtremeTemperature(double celsius) {
-        return celsius < -40 || celsius > 50;
+    public static double celsiusToKelvin(double celsius) {
+        return celsius + 273.15;
     }
 
     public static double kelvinToCelsius(double kelvin) {
         return kelvin - 273.15;
     }
 
-    // Converts between C, F and K
-    public double convert(double value, String from, String to) {
+    public static boolean isExtremeTemperature(double celsius) {
+        return celsius < -40 || celsius > 50;
+    }
 
+    public static double convert(double value, String from, String to) {
+
+        // Check that the input temperature is physically possible
         if (from.equalsIgnoreCase("K") && value < 0) {
-            throw new IllegalArgumentException("Temperature cannot be below absolute zero");
+            throw new IllegalArgumentException(
+                    "Temperature cannot be below absolute zero"
+            );
         }
 
         if (from.equalsIgnoreCase("C") && value < -273.15) {
-            throw new IllegalArgumentException("Temperature cannot be below absolute zero");
+            throw new IllegalArgumentException(
+                    "Temperature cannot be below absolute zero"
+            );
         }
 
         if (from.equalsIgnoreCase("F") && value < -459.67) {
-            throw new IllegalArgumentException("Temperature cannot be below absolute zero");
+            throw new IllegalArgumentException(
+                    "Temperature cannot be below absolute zero"
+            );
         }
 
-        // If the units are the same, no conversion is needed
+        // Same unit
         if (from.equalsIgnoreCase(to)) {
             return value;
         }
 
-        // First convert the input to Celsius
+        // Convert input to Celsius first
         double celsius;
 
         switch (from.toUpperCase()) {
@@ -55,10 +65,12 @@ public class TemperatureConverter {
                 break;
 
             default:
-                throw new IllegalArgumentException("Unknown temperature unit: " + from);
+                throw new IllegalArgumentException(
+                        "Unknown temperature unit: " + from
+                );
         }
 
-        // Then convert Celsius to the target unit
+        // Convert Celsius to target unit
         switch (to.toUpperCase()) {
             case "C":
                 return celsius;
@@ -67,15 +79,16 @@ public class TemperatureConverter {
                 return celsiusToFahrenheit(celsius);
 
             case "K":
-                return celsius + 273.15;
+                return celsiusToKelvin(celsius);
 
             default:
-                throw new IllegalArgumentException("Unknown temperature unit: " + to);
+                throw new IllegalArgumentException(
+                        "Unknown temperature unit: " + to
+                );
         }
     }
 
-    // Calculates speed in km/h
-    public double speed(double distanceKm, double timeHours) {
+    public static double speed(double distanceKm, double timeHours) {
         if (timeHours == 0) {
             throw new IllegalArgumentException("Time cannot be zero");
         }
@@ -85,26 +98,36 @@ public class TemperatureConverter {
 
     public static void printTemperatureStatus(double celsius) {
         if (isExtremeTemperature(celsius)) {
-            System.out.println(celsius + "°C is an extreme temperature.");
+            System.out.println(
+                    celsius + "°C is an extreme temperature."
+            );
         } else {
-            System.out.println(celsius + "°C is within the normal range.");
+            System.out.println(
+                    celsius + "°C is within the normal range."
+            );
         }
     }
 
     public static void main(String[] args) {
         double fahrenheit = 100.0;
         double celsius = fahrenheitToCelsius(fahrenheit);
-        System.out.println(fahrenheit + "°F is " + celsius + "°C");
+        System.out.println(
+                fahrenheit + "°F is " + celsius + "°C"
+        );
 
         celsius = 37.0;
         fahrenheit = celsiusToFahrenheit(celsius);
-        System.out.println(celsius + "°C is " + fahrenheit + "°F");
+        System.out.println(
+                celsius + "°C is " + fahrenheit + "°F"
+        );
 
         double extremeTemp = -50.0;
         printTemperatureStatus(extremeTemp);
 
         double kelvin = 300.0;
         celsius = kelvinToCelsius(kelvin);
-        System.out.println(kelvin + "K is " + celsius + "°C");
+        System.out.println(
+                kelvin + "K is " + celsius + "°C"
+        );
     }
 }
